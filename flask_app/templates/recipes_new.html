@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between">
+            <!-- ADD NEW RECIPE FORM -->
+            <div class="col-sm-7">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h2 class="mb-3">Add new recipe</h2>              
+                    </div>
+                    <div class="d-flex flex-row" style="gap:12px">            
+                        <form action="/dashboard">
+                            <button type="submit" class="btn btn-success">Dashboard</button>
+                        </form>                               
+                        <form action="/logout">
+                            <button type="submit" class="btn btn-danger">Logout</button>
+                        </form>                
+                    </div>
+        
+                </div>
+                <form action="/create_recipe" method="POST" class="form-group">
+                    <div>
+                        <label for="Name">Name:</label>
+                        <input type="text" name="name" class="form-control">
+                    </div>
+                    <div>
+                        <label for="description">Description:</label>
+                        <textarea name="description" id="" cols="1" rows="3" class="form-control"></textarea>
+                    </div>
+                    <div>
+                        <label for="instructions">Instructions:</label>
+                        <textarea name="instructions" id="" cols="1" rows="8" class="form-control"></textarea>
+                    </div>                 
+                    <div>
+                        <label for="under_30">Under 30 mins?:</label>
+                        <select name="under_30" class="custom-select">
+                            <option value="yes">yes</option>
+                            <option value="no">no</option>
+                        </select>
+                    </div>                 
+                    <button type="submit" class="btn btn-primary mt-3">Create</button>
+                </form>
+    
+            </div>
+
+
+    </div>
+    <!-- FLASH MESSAGES FOR REGISTER -->
+    <div class="container">
+    
+        {% with messages = get_flashed_messages(with_categories=true) %}     <!-- declare a variable called messages -->
+        {% if messages %}                   <!-- check if there are any messages -->
+        <h5>Fix these issues</h5>
+        {% for category, message in messages %}
+        {% if category == 'recipe' %}            <!-- loop through the messages -->
+        <p class="text-danger">{{message}}</p>
+        {% endif %}                   <!-- display each message in a paragraph tag -->
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+    
+    
+</body>
+</html>

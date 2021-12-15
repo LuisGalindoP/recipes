@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h2 class="mb-3">Welcome {{user.first_name}}!</h2>              
+            </div>
+            <div class="d-flex flex-row" style="gap:12px">            
+                <form action="/recipes/new">
+                    <button type="submit" class="btn btn-success">Create</button>
+                </form>                               
+                <form action="/logout">
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>                
+            </div>
+
+        </div>
+        <h5>These are the recipes</h5>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Under 30 mins?</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for recipe in all_recipes %}
+                    <tr>
+                        <td>{{recipe.name}}</td>
+                        <td>{{recipe.under_30}}</td>
+                        <td><a href="/recipes/{{recipe.id}}">recipe</a>
+                        <a href="/delete_recipe/{{recipe.id}}">{{delete_list[recipe.id]}}</a>
+                        <a href="/edit_recipe/{{recipe.id}}">{{edit_list[recipe.id]}}</a></td>                                              
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+    
+    
+</body>
+</html>

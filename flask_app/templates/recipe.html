@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- TOP TITLE AND BUTTONS -->
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h2 class="mb-3">Recipe for {{recipe.name}}</h2>              
+                </div>
+                <div class="d-flex flex-row" style="gap:12px">            
+                    <form action="/dashboard">
+                        <button type="submit" class="btn btn-success">Dashboard</button>
+                    </form>                               
+                    <form action="/logout">
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>                
+                </div>       
+            </div>  
+            <div>
+                <table class="table">
+                    <tr>
+                        <th>Description:</th>
+                        <td>{{recipe.description}}</td>
+                    </tr>
+                    <tr>
+                        <th>Under 30 minutes:</th>
+                        <td>{{recipe.under_30}}</td>
+                    </tr>
+                    <tr>
+                        <th>Instructions:</th>
+                        <td>{{recipe.instructions}}</td>
+                    </tr>
+                    <tr>
+                        <th>Date made:</th>
+                        <td>{{recipe.created_at}}</td>
+                    </tr>
+
+                </table>
+            </div>        
+    </div>
+    
+    
+</body>
+</html>
